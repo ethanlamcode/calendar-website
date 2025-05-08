@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create Event</title>
+  <link rel="stylesheet" href="calendar.css" />
+</head>
+<body>
+  <h2>Create Event for <span id="event-date"></span></h2>
+  <form id="event-form">
+    <label>Event Title: <input type="text" name="title" required></label><br>
+    <label>Description:<br><textarea name="description"></textarea></label><br>
+    <button type="submit">Save Event</button>
+  </form>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const date = params.get("date");
+    document.getElementById("event-date").textContent = date;
+
+    document.getElementById("event-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const data = new FormData(this);
+  const title = data.get("title");
+  const description = data.get("description");
+
+  const params = new URLSearchParams(window.location.search);
+  const date = params.get("date");
+
+  // Load existing events from localStorage
+  const existingEvents = JSON.parse(localStorage.getItem("events") || "{}");
+
+  // Save/update event
+  existingEvents[date] = { title, description };
+
+  // Store back to localStorage
+  localStorage.setItem("events", JSON.stringify(existingEvents));
+
+  // Redirect back to calendar
+  window.location.href = "tech.html";
+});
+  </script>
+</body>
+</html>

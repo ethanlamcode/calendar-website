@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Calendar</title>
+  <link rel="stylesheet" href="calendar.css" />
 </head>
 <body>
-    
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <button id="prev-month">&#8592;</button>
+      <h2 id="month-year"></h2>
+      <button id="next-month">&#8594;</button>
+    </div>
+    <table class="calendar">
+      <thead>
+        <tr>
+          <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th>
+          <th>Thu</th><th>Fri</th><th>Sat</th>
+        </tr>
+      </thead>
+      <tbody id="calendar-body">
+        <!-- Filled by JavaScript -->
+      </tbody>
+    </table>
+  </div>
+
+  <div id="event-modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="close-modal">&times;</span>
+      <h3 id="modal-date"></h3>
+      <textarea id="event-text" placeholder="Enter event..."></textarea>
+      <button id="save-event">Save</button>
+    </div>
+  </div>
+
+  <script src="calendar.js"></script>
 </body>
 </html>
