@@ -12,6 +12,7 @@
       <button id="prev-month">&#8592;</button>
       <h2 id="month-year"></h2>
       <button id="next-month">&#8594;</button>
+      <button id="back-home" style="margin-left: 10px;">Back to Home</button> <!-- New Back button -->
     </div>
     <table class="calendar">
       <thead>
@@ -31,9 +32,12 @@
       <span id="close-modal">&times;</span>
       <h3 id="modal-date"></h3>
       <textarea id="event-text" placeholder="Enter event..."></textarea>
-      <button id="save-event">Save</button>
+      <div class="modal-actions">
+        <button id="save-event">Save</button>
+        <button id="delete-event" style="margin-left: 10px;">Delete</button>
+      </div>
     </div>
-  </div>
+  </div>  
 
   <script src="calendar.js"></script>
 </body>
