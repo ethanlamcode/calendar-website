@@ -1,44 +1,88 @@
+/* Base body styles */
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 20px;
     background: #f9f9f9;
+    color: #333;
   }
   
+  /* Calendar container */
   .calendar-container {
     max-width: 700px;
     margin: auto;
     background: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
   
+  /* Header */
   .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
   }
   
+  /* Calendar table */
   .calendar {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
   }
   
-  .calendar th, .calendar td {
+  .calendar th {
+    width: 14.28%;
+    padding: 10px 5px;
+    background-color: #f1f1f1;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    color: #555;
+  }
+  
+  .calendar td {
     width: 14.28%;
     height: 80px;
     text-align: left;
     vertical-align: top;
-    padding: 5px;
-    border: 1px solid #ddd;
+    padding: 8px;
+    border: 1px solid #e0e0e0;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 4px;
+    position: relative;
   }
   
+  /* Hover effect */
   .calendar td:hover {
-    background-color: #f0f0f0;
+    background-color: #e6f7ff;
+    transform: scale(1.02);
+    box-shadow: inset 0 0 5px rgba(0, 123, 255, 0.2);
   }
   
+  /* Highlight today */
+  .calendar td.today {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+  }
+  
+  /* Dot indicator for events */
+  .calendar td.has-event::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin-top: 5px;
+    border-radius: 50%;
+    background-color: #28a745;
+  }
+  
+  /* Modal styles */
   .modal {
     position: fixed;
     top: 0;
@@ -46,6 +90,9 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .modal.hidden {
@@ -54,19 +101,162 @@ body {
   
   .modal-content {
     background: white;
-    margin: 10% auto;
     padding: 20px;
-    width: 300px;
-    border-radius: 8px;
+    width: 320px;
+    border-radius: 10px;
     position: relative;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
   }
   
+  /* Close button */
   #close-modal {
     position: absolute;
     right: 10px;
-    top: 5px;
+    top: 8px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 22px;
+    color: #aaa;
+    transition: color 0.2s;
   }
   
+  #close-modal:hover {
+    color: #000;
+  }
+  
+  /* Fade animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Responsive design */
+  @media (max-width: 600px) {
+    .calendar th, .calendar td {
+      font-size: 12px;
+      padding: 4px;
+    }
+  
+    .calendar-container {
+      padding: 12px;
+    }
+  
+    .modal-content {
+      width: 90%;
+    }
+  }
+
+  /* ---------- Create Event Page Styles ---------- */
+
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .form-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+  }
+  
+  form label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    transition: border 0.2s ease;
+  }
+  
+  input[type="text"]:focus,
+  textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style the calendar navigation and utility buttons */
+.calendar-header button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .calendar-header button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Optional: style modal actions if used */
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .modal-actions button {
+    padding: 8px 14px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  #save-event {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  #save-event:hover {
+    background-color: #218838;
+  }
+  
+  #delete-event {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  #delete-event:hover {
+    background-color: #c82333;
+  }
   
